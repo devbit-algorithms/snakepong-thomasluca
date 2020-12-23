@@ -17,10 +17,10 @@ class Arena:
 
     # Getters and Setters
     def setPoint(self, x, y):
-        self.__arena[y][x] = 1;
+        self.__arena[y][x] = 1
 
     def clearPoint(self, x, y):
-        self.__arena[y][x] = 0;
+        self.__arena[y][x] = 0
 
     def getPoint(self, x, y):
         return self.__arena[y][x]

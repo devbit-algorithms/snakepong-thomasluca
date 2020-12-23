@@ -10,30 +10,26 @@ class Game:
     def __init__(self):
         self.__arena = Arena()
         self.__wall = Wall(self.__arena)
-        self.__snake = Snake(self.__arena)
-        self.__movement = Movement(self.__arena, self.__snake)
+        self.snake = Snake(self.__arena)
+        # self.__movement = Movement(self.__arena, self.snake)
         self.__wall.placeWalls()
         self.cls()
+        self.createInitialSnake()
+        self.snake.placeOnArena()
         self.__arena.printArena()
-        self.gameloop()
+        # self.gameloop()
 
     def cls(self):
         os.system('cls' if os.name=='nt' else 'clear')
 
-    # def movement(self, key):
-    #     if key == 'z':
-    #         self.__snake.movePosY(0)
-    #     if key == 's':
-    #         self.__snake.movePosY(1)
-    #     if key == 'q':
-    #         self.__snake.movePosX(0)
-    #     if key == 'd':
-    #         self.__snake.movePosX(1)
+    def createInitialSnake(self):
+        self.snake.prepend([20, 8]).prepend([20, 7]).prepend([20, 6])
 
-    def gameloop(self):
-        while True:
-            if msvcrt.kbhit():
-                self.__movement.move(msvcrt.getwch())
-                self.cls()
-                self.__arena.printArena()
+    # def gameloop(self):
+
+        # while True:
+        #     if msvcrt.kbhit():
+        #         self.__movement.move(msvcrt.getwch())
+        #         self.cls()
+        #         self.__arena.printArena()
 
