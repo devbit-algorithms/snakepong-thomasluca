@@ -17,6 +17,7 @@ class Snake:
         self.__head = first
         self.__arena = arena
         self.snake = None
+        self.createInitialSnake()
 
     def head(self):
         if self.isEmpty():
@@ -58,7 +59,7 @@ class Snake:
         secondLast.setNext(None)
 
     def createInitialSnake(self):
-        self.snake.prepend([20, 8]).prepend([20, 7]).prepend([20, 6])
+        self.prepend([20, 8]).prepend([20, 7]).prepend([20, 6])
 
     def placeOnArena(self):
         __currentNode = self.__head

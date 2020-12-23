@@ -12,20 +12,21 @@ class Movement:
     def move(self, key):
         self.nextPosition(key)
         if(self.isValidMovement()):
-            self.__snake.setNewPosition(self.__nextPosX, self.__nextPosY)
+            self.__snake.prepend([self.__nextPosX, self.__nextPosY])
+            self.__snake.removeLast()
         else:
             self.placeHeadOnOrigin()
     
     def nextPosition(self, key):
         if key == 'z':
-            self.__nextPosY = self.__snake.getPosY() - 1
+            self.__nextPosY = self.__snake.head()[1] - 1
         if key == 's':
-            self.__nextPosY = self.__snake.getPosY() + 1
+            self.__nextPosY = self.__snake.head()[1] + 1
         if key == 'q':
-            self.__nextPosX = self.__snake.getPosX() - 1
+            self.__nextPosX = self.__snake.head()[0] - 1
         if key == 'd':
-            self.__nextPosX = self.__snake.getPosX() + 1
+            self.__nextPosX = self.__snake.head()[0] + 1
     
     def placeHeadOnOrigin(self):
-        self.__nextPosX = self.__snake.getPosX()
-        self.__nextPosY = self.__snake.getPosY()
+        self.__nextPosX = self.__snake.head()[0]
+        self.__nextPosY = self.__snake.head()[1]

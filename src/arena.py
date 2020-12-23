@@ -14,6 +14,11 @@ class Arena:
                 else:
                     print(". ", end='')
             print(end="\n")
+    
+    def clear(self):
+        for y in range(1, self.__HEIGHT - 1):
+            for x in range(1, self.__WIDTH - 1):
+                self.__arena[y][x] = 0
 
     # Getters and Setters
     def setPoint(self, x, y):
