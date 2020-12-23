@@ -1,6 +1,7 @@
 import keyboard
 import msvcrt
 import os
+import time
 from arena import Arena
 from wall import Wall
 from snake import Snake
@@ -22,11 +23,21 @@ class Game:
         os.system('cls' if os.name=='nt' else 'clear')
 
     def gameloop(self):
-      while True:
-        if msvcrt.kbhit():
-            self.__movement.move(msvcrt.getwch())
-            self.cls()
+        __counter = 0
+        self.__key = 'z'
+        while True:
+            __counter += 1
             self.__arena.clear()
-            self.snake.placeOnArena()
-            self.__arena.printArena()
+            if __counter > 3:
+                __counter = 0
+                self.cls()
+                if msvcrt.kbhit():
+                    self.__key = msvcrt.getwch()
+                self.update()
+            time.sleep(.05)
+        
+    def update(self):
+        self.__movement.move(self.__key)
+        self.snake.placeOnArena()
+        self.__arena.printArena()
 
