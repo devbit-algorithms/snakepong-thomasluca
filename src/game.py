@@ -13,16 +13,16 @@ class Game:
         self.__wall = Wall(self.__arena)
         self.snake = Snake(self.__arena)
         self.__movement = Movement(self.__arena, self.snake)
-        self.__wall.placeWalls()
         self.cls()
-        self.snake.placeOnArena()
-        self.__arena.printArena()
         self.gameloop()
 
     def cls(self):
         os.system('cls' if os.name=='nt' else 'clear')
 
     def gameloop(self):
+        self.__wall.placeWalls()
+        self.snake.placeOnArena()
+        self.__arena.printArena()
         __counter = 0
         self.__key = 'z'
         while True:
@@ -39,5 +39,6 @@ class Game:
     def update(self):
         self.__movement.move(self.__key)
         self.snake.placeOnArena()
+        self.__movement.moveBall()
         self.__arena.printArena()
 
