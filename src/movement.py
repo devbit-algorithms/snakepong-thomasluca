@@ -36,13 +36,14 @@ class Movement:
         self.__nextPosY = self.__snake.head()[1]
 
 
+    # Work in progress!!!
     def ballCollision(self, x, y):
         __dX = self.__ball.getDirX()
         __dY = self.__ball.getDirY()
 
         # Collision above
         if self.__arena.getPoint(x, y - 1) == 1:
-            __dY = -1
+            __dY = 1
             __dX = random.randint(-1, 1)
         # Collision right
         elif self.__arena.getPoint(x+1, y) == 1:
@@ -50,7 +51,7 @@ class Movement:
             __dY = random.randint(-1, 1)
         # Collision below
         elif self.__arena.getPoint(x, y+1) == 1:
-            __dY = 1
+            __dY = -1
             __dX = random.randint(-1, 1)
         # Collision left
         elif self.__arena.getPoint(x-1, y) == 1:
@@ -65,5 +66,5 @@ class Movement:
             self.__ball.setPos(self.__bNextPosX, self.__bNextPosY)
         else:
             self.ballCollision(self.__ball.getX(), self.__ball.getY())
-        print(str(self.__ball.getX()) + ", " + str(self.__ball.getY()))
+        print(str(self.__ball.getDirX()) + ", " + str(self.__ball.getDirY()))
         self.__ball.placeOnArena()
