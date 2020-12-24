@@ -2,6 +2,7 @@ import random
 from ball import Ball
 class Movement:
     def __init__(self, arena, snake):
+        self.__isGameOver = False
         self.__arena = arena
         self.__snake = snake
         self.placeHeadOnOrigin()
@@ -22,7 +23,9 @@ class Movement:
             else:
                 self.__snake.removeLast()
         else:
-            self.placeHeadOnOrigin()
+            # self.placeHeadOnOrigin()
+            self.__isGameOver = True
+
     
     def nextPosition(self, key):
         if key == 'z':
@@ -71,3 +74,6 @@ class Movement:
             self.ballCollision(self.__ball.getX(), self.__ball.getY())
         print(str(self.__ball.getDirX()) + ", " + str(self.__ball.getDirY()))
         self.__ball.placeOnArena()
+    
+    def isGameOver(self):
+        return self.__isGameOver

@@ -25,20 +25,26 @@ class Game:
         self.__arena.printArena()
         __counter = 0
         self.__key = 'z'
-        while True:
+        while not self.__movement.isGameOver():
             __counter += 1
-            self.__arena.clear()
-            if __counter > 3:
+            if __counter > 10:
+                self.__arena.clear()
                 __counter = 0
                 self.cls()
                 if msvcrt.kbhit():
                     self.__key = msvcrt.getwch()
                 self.update()
-            time.sleep(.05)
+            time.sleep(.01)
+        self.endGame()
+        
         
     def update(self):
         self.__movement.move(self.__key)
         self.snake.placeOnArena()
         self.__movement.moveBall()
         self.__arena.printArena()
-
+    
+    def endGame(self):
+        self.cls()
+        print("\nGame Over")
+        print("Your snake reached a length of " + str(self.snake.size()) + '\n')
