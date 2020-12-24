@@ -17,7 +17,10 @@ class Movement:
         self.nextPosition(key)
         if(self.isValidMovement(self.__nextPosX, self.__nextPosY)):
             self.__snake.prepend([self.__nextPosX, self.__nextPosY])
-            self.__snake.removeLast()
+            if self.__ball.isGoal():
+                self.__ball.reset()
+            else:
+                self.__snake.removeLast()
         else:
             self.placeHeadOnOrigin()
     

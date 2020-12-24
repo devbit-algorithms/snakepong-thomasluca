@@ -1,14 +1,22 @@
 class Ball:
     def __init__(self, arena):
-        self.__posX = 5
-        self.__posY = 7
-        self.__dX = 1
-        self.__dY = 0
+        self.reset()
         self.__arena = arena
     
     def placeOnArena(self):
         self.__arena.setPoint(self.__posX, self.__posY)
         print(str(self.__posX) + ", " + str(self.__posY))
+
+    def reset(self):
+        self.__posX = 3
+        self.__posY = 7
+        self.__dX = 1
+        self.__dY = 0
+    
+    def isGoal(self):
+        if self.__posX == 1:
+            return True
+        return False
 
     # Getters / Setters
     def getX(self):
