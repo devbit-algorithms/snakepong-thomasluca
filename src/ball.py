@@ -4,8 +4,7 @@ class Ball:
         self.__arena = arena
     
     def placeOnArena(self):
-        self.__arena.setPoint(self.__posX, self.__posY)
-        print(str(self.__posX) + ", " + str(self.__posY))
+        self.__arena.setPoint(self.__posX, self.__posY, 2)
 
     def reset(self):
         self.__posX = 3

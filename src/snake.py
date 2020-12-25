@@ -64,5 +64,5 @@ class Snake:
     def placeOnArena(self):
         __currentNode = self.__head
         for i in range(self.size()):
-            self.__arena.setPoint(__currentNode.get()[0], __currentNode.get()[1])
+            self.__arena.setPoint(__currentNode.get()[0], __currentNode.get()[1], 3)
             __currentNode = __currentNode.next()
