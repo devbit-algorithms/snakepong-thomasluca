@@ -9,7 +9,13 @@ class Arena:
     def printArena(self):
         for y in range(self.__HEIGHT):
             for x in range(self.__WIDTH):
-                if self.__arena[y][x].any() == 1:
+                if self.__arena[y][x] == 2:
+                    print("\033[;31m██\033[0m", end='')
+                elif self.__arena[y][x] == 3:
+                    print("\033[;32m██\033[0m", end='')
+                elif self.__arena[y][x] == 4:
+                    print(".|", end='')
+                elif self.__arena[y][x] == 1:
                     print("██", end='')
                 else:
                     print(". ", end='')
@@ -21,8 +27,8 @@ class Arena:
                 self.__arena[y][x] = 0
 
     # Getters and Setters
-    def setPoint(self, x, y):
-        self.__arena[y][x] = 1
+    def setPoint(self, x, y, material):
+        self.__arena[y][x] = material
 
     def clearPoint(self, x, y):
         self.__arena[y][x] = 0

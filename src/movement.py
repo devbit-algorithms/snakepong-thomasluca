@@ -1,5 +1,7 @@
 import random
 from ball import Ball
+from paddle import Paddle
+
 class Movement:
     def __init__(self, arena, snake):
         self.__isGameOver = False
@@ -8,22 +10,25 @@ class Movement:
         self.placeHeadOnOrigin()
         self.__ball = Ball(self.__arena)
         self.__ball.placeOnArena()
+        self.__paddle = Paddle(self.__arena)
+        self.__paddle.placeOnArena()
+        
         
     def isValidMovement(self, x, y):
-        if self.__arena.getPoint(x, y) == 1:
+        if self.__arena.getPoint(x, y) >= 1:
             return False
         return True
     
-    def move(self, key):
+    def moveSnake(self, key):
         self.nextPosition(key)
         if(self.isValidMovement(self.__nextPosX, self.__nextPosY)):
             self.__snake.prepend([self.__nextPosX, self.__nextPosY])
+            self.__snake.placeOnArena()
             if self.__ball.isGoal():
                 self.__ball.reset()
             else:
                 self.__snake.removeLast()
         else:
-            # self.placeHeadOnOrigin()
             self.__isGameOver = True
 
     
@@ -48,19 +53,17 @@ class Movement:
         __dY = self.__ball.getDirY()
 
         # Collision above
-        if self.__arena.getPoint(x, y - 1) == 1:
+        if self.__arena.getPoint(x, y - 1) >= 1:
             __dY = 1
-            __dX = random.randint(-1, 1)
         # Collision right
-        elif self.__arena.getPoint(x+1, y) == 1:
+        elif self.__arena.getPoint(x+1, y) >= 1:
             __dX = -1
             __dY = random.randint(-1, 1)
         # Collision below
-        elif self.__arena.getPoint(x, y+1) == 1:
+        elif self.__arena.getPoint(x, y+1) >= 1:
             __dY = -1
-            __dX = random.randint(-1, 1)
         # Collision left
-        elif self.__arena.getPoint(x-1, y) == 1:
+        elif self.__arena.getPoint(x-1, y) >= 1:
             __dX = 1
             __dY = random.randint(-1, 1)
         self.__ball.setDir(__dX, __dY)
@@ -72,8 +75,17 @@ class Movement:
             self.__ball.setPos(self.__bNextPosX, self.__bNextPosY)
         else:
             self.ballCollision(self.__ball.getX(), self.__ball.getY())
-        print(str(self.__ball.getDirX()) + ", " + str(self.__ball.getDirY()))
         self.__ball.placeOnArena()
     
     def isGameOver(self):
         return self.__isGameOver
+
+    def movePaddle(self):
+        top = self.__paddle.getTop()
+        if top == 1 or top == 10:
+            self.__paddle.reverseDirection()
+        if self.__paddle.getDirection() == 0:
+            self.__paddle.moveUp()
+        else:
+            self.__paddle.moveDown()
+        self.__paddle.placeOnArena()
