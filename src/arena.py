@@ -7,19 +7,21 @@ class Arena:
         self.__arena = np.full((self.__HEIGHT, self.__WIDTH), 0)
     
     def printArena(self):
+        output = ""
         for y in range(self.__HEIGHT):
             for x in range(self.__WIDTH):
                 if self.__arena[y][x] == 2:
-                    print("\033[;31m██\033[0m", end='')
+                    output += "\033[;31m██\033[0m"
                 elif self.__arena[y][x] == 3:
-                    print("\033[;32m██\033[0m", end='')
+                    output += "\033[;32m██\033[0m"
                 elif self.__arena[y][x] == 4:
-                    print(".|", end='')
+                    output += ".|"
                 elif self.__arena[y][x] == 1:
-                    print("██", end='')
+                    output += "██"
                 else:
-                    print(". ", end='')
-            print(end="\n")
+                    output += ". "
+            output += "\n"
+        print(output)
     
     def clear(self):
         for y in range(1, self.__HEIGHT - 1):
