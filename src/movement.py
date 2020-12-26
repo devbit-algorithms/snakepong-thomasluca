@@ -12,6 +12,7 @@ class Movement:
         self.__ball.placeOnArena()
         self.__paddle = Paddle(self.__arena)
         self.__paddle.placeOnArena()
+        self.__previousKey = 'z'
         
         
     def isValidMovement(self, x, y):
@@ -41,6 +42,17 @@ class Movement:
             self.__nextPosX = self.__snake.head()[0] - 1
         if key == 'd':
             self.__nextPosX = self.__snake.head()[0] + 1
+    
+    def isOppositeKey(self, key, nextKey):
+        if key == 'z' and nextKey == 's':
+            return True
+        if key == 's' and nextKey == 'z':
+            return True
+        if key == 'q' and nextKey == 'd':
+            return True
+        if key == 'd' and nextKey == 'q':
+            return True
+        return False
     
     def placeHeadOnOrigin(self):
         self.__nextPosX = self.__snake.head()[0]

@@ -32,7 +32,9 @@ class Game:
                 __counter = 0
                 self.cls()
                 if msvcrt.kbhit():
-                    self.__key = msvcrt.getwch()
+                    __tempKey = msvcrt.getwch()
+                    if not self.__movement.isOppositeKey(self.__key, __tempKey):
+                        self.__key = __tempKey
                 self.update()
             time.sleep(.01)
         self.endGame()
