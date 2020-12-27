@@ -66,3 +66,11 @@ class Snake:
         for i in range(self.size()):
             self.__arena.setPoint(__currentNode.get()[0], __currentNode.get()[1], 3)
             __currentNode = __currentNode.next()
+
+    def didHeadCollideWithBody(self):
+        __bodyElement = self.__head.next().next().next()
+        for i in range(self.size() - 3):
+            if self.__head.get() == __bodyElement.get():
+                return True
+            __bodyElement = __bodyElement.next()
+        return False

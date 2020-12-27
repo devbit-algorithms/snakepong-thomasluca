@@ -22,13 +22,14 @@ class Movement:
     
     def moveSnake(self, key):
         self.nextPosition(key)
-        if(self.isValidMovement(self.__nextPosX, self.__nextPosY)):
+        if(self.isValidMovement(self.__nextPosX, self.__nextPosY) 
+        and not self.__snake.didHeadCollideWithBody()):
             self.__snake.prepend([self.__nextPosX, self.__nextPosY])
-            self.__snake.placeOnArena()
             if self.__ball.isGoal():
                 self.__ball.reset()
             else:
                 self.__snake.removeLast()
+            self.__snake.placeOnArena()
         else:
             self.__isGameOver = True
 
