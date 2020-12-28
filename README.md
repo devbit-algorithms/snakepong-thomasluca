@@ -29,4 +29,4 @@ The main components of this game are:
 
 ### Diagram
 This diagram shows a simplified overview of every class along with its most important methods.
-![diagram](./img/diagram1.png)
+![diagram](./img/diagram.png)
