@@ -24,12 +24,6 @@ class Snake:
             return None
         else:
             return self.__head.get()
-    
-    def tail(self):
-        if self.isEmpty():
-            return Snake(self.__arena)
-        else:
-            return Snake(self.__head.next())
 
     def prepend(self, element):
         self.__head = _Node(element, self.__head)
